@@ -1,16 +1,18 @@
+$ErrorActionPreference = "Stop"
+
 if (!$args[0]) {
     Write-Host "Please specify Backup Path" -ForegroundColor red
     exit 1
 }
 
-if (!$args[0]) {
+if (!$args[1]) {
     Write-Host "Please specify Bucket Name" -ForegroundColor red
     exit 1
 }
 
 if (!($args[0] | Test-Path)) {
     Write-Host "Specified Backup Path Does Not exist" -ForegroundColor red
-    exit 1;
+    exit 1
 }
 
 $folderName = (Get-Date).tostring("dd-MM-yyyy-hh-mm-ss");
@@ -18,7 +20,7 @@ $folderPath = -join($args[0],$folderName)
 
 if ($folderPath | Test-Path) {
     Write-Host "Backup folder already exists" $folderPath -ForegroundColor red
-    exit 1;
+    exit 1
 }
 
 # Create Folder
@@ -43,3 +45,6 @@ aws s3 cp $zipPath s3://$args[1]
 # Removing Folder
 Write-Host "Removing folder" -ForegroundColor green
 Remove-Item $folderPath -Recurse
+
+#Done
+Write-Host "Done :)" -ForegroundColor green
