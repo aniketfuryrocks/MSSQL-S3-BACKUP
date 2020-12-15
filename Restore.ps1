@@ -18,8 +18,6 @@ $folderPath = [string] $name.Substring(0,$name.Length-3)
 
 Get-ChildItem $folderPath -Filter *.BAK | 
 Foreach-Object {
-    echo $_.Name
-    echo $_.BaseName
     sqlcmd -Q "RESTORE DATABASE $($_.BaseName) FROM DISK = '$($_.FullName)'"
 }
 
