@@ -1,7 +1,5 @@
 # MSSQL-S3-BACKUP
-MsSQL backup and restore utility with s3
-
-> Tested on windows.
+MsSQL backup and restore utility with s3 for windows
 
 ## Requirements :
 
